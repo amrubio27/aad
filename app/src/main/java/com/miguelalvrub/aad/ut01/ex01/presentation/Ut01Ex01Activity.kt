@@ -5,38 +5,26 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.miguelalvrub.aad.R
-import com.miguelalvrub.aad.ut01.ex01.data.PreferenceLocalSource
-import com.miguelalvrub.aad.ut01.ex01.data.SharedPreferenceLocalSource
+import com.miguelalvrub.aad.ut01.ex01.data.PreferencesLocalSource
 import com.miguelalvrub.aad.ut01.ex01.domain.Customer
-
 class Ut01Ex01Activity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ut01ex01)
-
-        initSharedPreference()
+        init()
+        initAppConfig()
     }
 
-    private fun initSharedPreference(){
-        //val spCustomer: SharedPreferenceLocalSource = SharedPreferenceLocalSource(this)
-        val spCustomer = SharedPreferenceLocalSource(this)
-        spCustomer.saveCustomer(Customer(1,"Customer1", "Surname1", true))
+    private fun init() {
+        val localDataSource = PreferencesLocalSource(this)
+        val testCustomer = Customer(1, "Name1", "Surname1", true)
 
-
-        ContextCompat.getColor(this, R.color.black)
-
-
-        val newCustomer = spCustomer.getCustomer()
-        Log.d("@dev", "Customer $newCustomer" )
+        localDataSource.save(testCustomer)
+        val customerSaved = localDataSource.getCustomer()
     }
 
-    private fun initPreference(){
-        //val spCustomer: PreferenceLocalSource = PreferenceLocalSource(this)
-        val spCustomer = PreferenceLocalSource(this)
-        spCustomer.saveCustomer(Customer(1,"Customer1", "Surname1", true))
+    private fun initAppConfig() {
 
-        val newCustomer = spCustomer.getCustomer()
-        Log.d("@dev", "Customer $newCustomer" )
     }
-
 }

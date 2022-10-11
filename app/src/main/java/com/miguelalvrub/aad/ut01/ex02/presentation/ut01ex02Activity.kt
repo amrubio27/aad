@@ -19,7 +19,8 @@ class ut01ex02Activity : AppCompatActivity() {
 
     private fun initSharedPreference(){
         val spOpened = SharedPreferenceLocalSource(this)
-        spOpened.
+
+
 
         val newOpened = spOpened.getOpened()
         Log.d("@dev", "Customer $newOpened" )

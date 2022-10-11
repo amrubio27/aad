@@ -7,10 +7,12 @@ import com.miguelalvrub.aad.ut01.ex01.domain.Customer
 import com.miguelalvrub.aad.ut01.ex02.domain.WasOpened
 import com.miguelalvrub.aad.ut01.ex02.presentation.ut01ex02Activity
 
+const val KEY_IS_FIRST_OPENED = "is_first_opened"
 class SharedPreferenceLocalSource (val activity: ut01ex02Activity){
     val sharedPref = activity.getSharedPreferences(
         activity.getString(R.string.preference_ut01ex01), Context.MODE_PRIVATE
     )
+
 
     fun saveOpened(wasOpened: WasOpened){
         val editor = sharedPref.edit()
