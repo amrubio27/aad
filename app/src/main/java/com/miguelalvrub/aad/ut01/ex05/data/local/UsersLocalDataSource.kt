@@ -26,7 +26,7 @@ class UsersLocalDataSource(val sharedPref: SharedPreferences) {
         edit.putString(user.id.toString(), jsonUser) //le paso la cadena de texto que contiene un usuario serializado
         edit.apply() //guarda de forma asíncrona para subir y actualizar los cambios
     }
-
+/*
     fun getUsers(): List<User>?{
         return listOf(
             User(
@@ -36,22 +36,31 @@ class UsersLocalDataSource(val sharedPref: SharedPreferences) {
             )
         )
     }
+*/
 
-    /*
     fun getUsers(): List<User>{
         val users = mutableListOf<User>()
         sharedPref.all.forEach{ map ->
             users.add(gson.fromJson(map.value as String, User::class.java))
-
         }
+        return users
     }
-    */
+
+
+
 
     fun findById(userId: Int):User {
         val jsonUsers = sharedPref.getString(userId.toString(),"")
         return gson.fromJson(jsonUsers, User::class.java)
-
     }
+    /*
+    fun findById(userId: Int):User?{
+        val user: String? = sharedPref.getString(userId.toString(),null)
+        return  user?.let{ userNotNull ->
+            gson.fromJson(userNotNull,User::class.java)
+        }
+    }
+     */
 
     fun remove(userId: Int){
         sharedPref.edit().remove(userId.toString()).apply() //apply() al final o

@@ -26,7 +26,7 @@ class UserRepository(
         return users
     }
 
-    fun getUserById(userId: Int) : User? {
+    fun getUserById(userId: Int) : User {
         var user = localSource.findById(userId)
         if(user==null){
             user = remoteSource.getUser(userId)
